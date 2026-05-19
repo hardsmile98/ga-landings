@@ -13,6 +13,8 @@
   document.addEventListener("DOMContentLoaded", function() {
     // Получаем параметры из текущего URL
     const urlParams = new URLSearchParams(window.location.search);
+
+    const refUrl = new URL(window.location.href);
     
     if (urlParams.toString()) {
       // Получаем все ссылки на странице
@@ -27,13 +29,14 @@
           linkUrl.searchParams.set(key, value);
         });
 
+        linkUrl.searchParams.set('referrer', `${refUrl.origin}${refUrl.pathname}`)
+
         // Обновляем href ссылки с новыми параметрами
         link.href = linkUrl.toString();
       });
     }
   });
 </script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">

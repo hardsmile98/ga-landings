@@ -12,6 +12,8 @@
   document.addEventListener("DOMContentLoaded", function() {
     // Получаем параметры из текущего URL
     const urlParams = new URLSearchParams(window.location.search);
+
+    const refUrl = new URL(window.location.href);
     
     if (urlParams.toString()) {
       // Получаем все ссылки на странице
@@ -26,13 +28,14 @@
           linkUrl.searchParams.set(key, value);
         });
 
+        linkUrl.searchParams.set('referrer', `${refUrl.origin}${refUrl.pathname}`)
+
         // Обновляем href ссылки с новыми параметрами
         link.href = linkUrl.toString();
       });
     }
   });
 </script>
-
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 

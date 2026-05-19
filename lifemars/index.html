@@ -12,6 +12,8 @@
   document.addEventListener("DOMContentLoaded", function() {
     // Получаем параметры из текущего URL
     const urlParams = new URLSearchParams(window.location.search);
+
+    const refUrl = new URL(window.location.href);
     
     if (urlParams.toString()) {
       // Получаем все ссылки на странице
@@ -25,6 +27,8 @@
         urlParams.forEach((value, key) => {
           linkUrl.searchParams.set(key, value);
         });
+
+        linkUrl.searchParams.set('referrer', `${refUrl.origin}${refUrl.pathname}`)
 
         // Обновляем href ссылки с новыми параметрами
         link.href = linkUrl.toString();
