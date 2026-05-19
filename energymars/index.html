@@ -9,105 +9,29 @@
 <meta property="og:type" content="website">
 <title>Марсель — Бесплатный разбор натальной карты</title>
 
-<script 
-  id="tracking-script"
-  data-target-url="https://eulife.online/Q9PvVc"
-  async defer
->
-(function () {
-  const SCRIPT_ID = "tracking-script";
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Получаем параметры из текущего URL
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    if (urlParams.toString()) {
+      // Получаем все ссылки на странице
+      const links = document.querySelectorAll('a[href]');
+      
+      links.forEach(link => {
+        // Парсим существующий href ссылки
+        const linkUrl = new URL(link.href, window.location.origin);
 
-  function getReferrer() {
-    const referrerUrl = new URL(window.location.href);
-    return `${referrerUrl.origin}${referrerUrl.pathname}`;
-  }
-
-  const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-
-    const parts = value.split(`; ${name}=`);
-
-    if (parts.length === 2) return parts.pop().split(';').shift();
-
-    return null;
-  };
-
-  function getScriptConfig() {
-    const script = document.getElementById(SCRIPT_ID) || document.currentScript;
-
-    if (!script) {
-      console.error("Tracking script not found");
-      throw new Error("Tracking script not found");
-    }
-
-    return {
-      scriptTargetUrl: script.dataset.targetUrl,
-      scriptTargetClass: script.dataset.targetClass,
-    };
-  }
-
-  function buildTrackingUrl(config) {
-    const currentUrl = new URL(window.location.href);
-
-    const trackingUrl = new URL(config.scriptTargetUrl);
-
-    currentUrl.searchParams.forEach((value, key) => {
-      trackingUrl.searchParams.set(key, value);
-    });
-
-    trackingUrl.searchParams.set("referrer", getReferrer());
-
-    return trackingUrl.toString();
-  }
-
-  function getElementsToPatch(config) {
-    const className = config.scriptTargetClass?.trim();
-
-    if (className) {
-      const selector = className
-        .split(/\s+/)
-        .map((c) => `.${CSS.escape(c)}`)
-        .join("");
-
-      return document.querySelectorAll(selector);
-    }
-
-    const links = document.querySelectorAll("a[href]");
-
-    const buttons = document.querySelectorAll('button[type="button"]');
-
-    return [...links, ...buttons];
-  }
-
-  function patchLinks() {
-    const config = getScriptConfig();
-
-    const elements = getElementsToPatch(config);
-
-    const trackingUrl = buildTrackingUrl(config);
-
-    elements.forEach((element) => {
-      const isLink = element.matches("a[href]");
-
-      if (isLink) {
-        element.setAttribute("href", trackingUrl);
-      } else {
-        element.setAttribute("data-target-url", trackingUrl);
-
-        element.addEventListener("click", (event) => {
-          event.preventDefault();
-          window.open(trackingUrl, "_blank");
+        // Добавляем все параметры из текущего URL к ссылке
+        urlParams.forEach((value, key) => {
+          linkUrl.searchParams.set(key, value);
         });
-      }
-    });
-  }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", patchLinks);
-  } else {
-    patchLinks();
-  }
-})();
+        // Обновляем href ссылки с новыми параметрами
+        link.href = linkUrl.toString();
+      });
+    }
+  });
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -746,7 +670,7 @@ img { display: block; max-width: 100% }
       </div>
 
       <div class="hero-enter hero-d6" style="display:flex;flex-direction:column;align-items:center">
-        <a href="https://t.me/m/GpOnVAl5ZGU1" class="cta" target="_blank" rel="noopener">
+        <a href="https://eulife.online/Q9PvVc" class="cta" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.13l-1.97 9.28c-.15.67-.54.83-1.09.52l-3.02-2.22-1.46 1.4c-.16.16-.3.3-.61.3l.22-3.06 5.56-5.02c.24-.22-.05-.34-.38-.13L8.69 13.7l-2.94-.92c-.64-.2-.65-.64.13-.95l11.49-4.43c.53-.2 1 .13.82.95l-.25-.22z"/></svg>
           Получить бесплатный разбор
         </a>
@@ -807,7 +731,7 @@ img { display: block; max-width: 100% }
         <div class="insight-line" aria-hidden="true"></div>
         <div class="insight-quote" id="insQ"></div>
         <div class="insight-detail" id="insD"></div>
-        <a href="https://t.me/m/GpOnVAl5ZGU1" class="cta" target="_blank" rel="noopener">
+        <a href="https://eulife.online/Q9PvVc" class="cta" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.13l-1.97 9.28c-.15.67-.54.83-1.09.52l-3.02-2.22-1.46 1.4c-.16.16-.3.3-.61.3l.22-3.06 5.56-5.02c.24-.22-.05-.34-.38-.13L8.69 13.7l-2.94-.92c-.64-.2-.65-.64.13-.95l11.49-4.43c.53-.2 1 .13.82.95l-.25-.22z"/></svg>
           Получить разбор бесплатно
         </a>
@@ -858,7 +782,7 @@ img { display: block; max-width: 100% }
     <h2>Твоя карта уже написана.<br><em>Осталось прочитать.</em></h2>
     <p>Напиши Марселю в Telegram — получи бесплатный персональный разбор натальной карты</p>
 
-    <a href="https://t.me/m/GpOnVAl5ZGU1" class="cta" target="_blank" rel="noopener">
+    <a href="https://eulife.online/Q9PvVc" class="cta" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.13l-1.97 9.28c-.15.67-.54.83-1.09.52l-3.02-2.22-1.46 1.4c-.16.16-.3.3-.61.3l.22-3.06 5.56-5.02c.24-.22-.05-.34-.38-.13L8.69 13.7l-2.94-.92c-.64-.2-.65-.64.13-.95l11.49-4.43c.53-.2 1 .13.82.95l-.25-.22z"/></svg>
       Написать Марселю
     </a>

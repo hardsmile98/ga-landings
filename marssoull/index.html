@@ -8,105 +8,29 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<script 
-  id="tracking-script"
-  data-target-url="https://eulife.online/TGNMhQ"
-  async defer
->
-(function () {
-  const SCRIPT_ID = "tracking-script";
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Получаем параметры из текущего URL
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    if (urlParams.toString()) {
+      // Получаем все ссылки на странице
+      const links = document.querySelectorAll('a[href]');
+      
+      links.forEach(link => {
+        // Парсим существующий href ссылки
+        const linkUrl = new URL(link.href, window.location.origin);
 
-  function getReferrer() {
-    const referrerUrl = new URL(window.location.href);
-    return `${referrerUrl.origin}${referrerUrl.pathname}`;
-  }
-
-  const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-
-    const parts = value.split(`; ${name}=`);
-
-    if (parts.length === 2) return parts.pop().split(';').shift();
-
-    return null;
-  };
-
-  function getScriptConfig() {
-    const script = document.getElementById(SCRIPT_ID) || document.currentScript;
-
-    if (!script) {
-      console.error("Tracking script not found");
-      throw new Error("Tracking script not found");
-    }
-
-    return {
-      scriptTargetUrl: script.dataset.targetUrl,
-      scriptTargetClass: script.dataset.targetClass,
-    };
-  }
-
-  function buildTrackingUrl(config) {
-    const currentUrl = new URL(window.location.href);
-
-    const trackingUrl = new URL(config.scriptTargetUrl);
-
-    currentUrl.searchParams.forEach((value, key) => {
-      trackingUrl.searchParams.set(key, value);
-    });
-
-    trackingUrl.searchParams.set("referrer", getReferrer());
-
-    return trackingUrl.toString();
-  }
-
-  function getElementsToPatch(config) {
-    const className = config.scriptTargetClass?.trim();
-
-    if (className) {
-      const selector = className
-        .split(/\s+/)
-        .map((c) => `.${CSS.escape(c)}`)
-        .join("");
-
-      return document.querySelectorAll(selector);
-    }
-
-    const links = document.querySelectorAll("a[href]");
-
-    const buttons = document.querySelectorAll('button[type="button"]');
-
-    return [...links, ...buttons];
-  }
-
-  function patchLinks() {
-    const config = getScriptConfig();
-
-    const elements = getElementsToPatch(config);
-
-    const trackingUrl = buildTrackingUrl(config);
-
-    elements.forEach((element) => {
-      const isLink = element.matches("a[href]");
-
-      if (isLink) {
-        element.setAttribute("href", trackingUrl);
-      } else {
-        element.setAttribute("data-target-url", trackingUrl);
-
-        element.addEventListener("click", (event) => {
-          event.preventDefault();
-          window.open(trackingUrl, "_blank");
+        // Добавляем все параметры из текущего URL к ссылке
+        urlParams.forEach((value, key) => {
+          linkUrl.searchParams.set(key, value);
         });
-      }
-    });
-  }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", patchLinks);
-  } else {
-    patchLinks();
-  }
-})();
+        // Обновляем href ссылки с новыми параметрами
+        link.href = linkUrl.toString();
+      });
+    }
+  });
 </script>
 
 <style>
@@ -560,7 +484,7 @@ h2{
   </ul>
 
   <div class="h-ct" style="display:flex;flex-direction:column;align-items:center;width:100%;">
-    <a href="https://t.me/m/GpOnVAl5ZGU1" class="cta-btn"
+    <a href="https://eulife.online/TGNMhQ" class="cta-btn"
        aria-label="Узнать что в моей карте — открыть Telegram"
        onclick="if(window.ttq)ttq.track('Contact')">
       <svg class="ci" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -689,7 +613,7 @@ h2{
   <span class="eyebrow">Твой разбор</span>
   <h2>Твоя карта<br><em class="italic gold">уже написана</em></h2>
   <p class="fsub">Осталось только её прочитать. Сегодня разбираю карту бесплатно.</p>
-  <a href="https://t.me/m/GpOnVAl5ZGU1" class="cta-btn"
+  <a href="https://eulife.online/TGNMhQ" class="cta-btn"
      style="margin:0 auto;display:inline-flex;"
      aria-label="Написать Марселю в Telegram"
      onclick="if(window.ttq)ttq.track('Contact')">
