@@ -10,7 +10,6 @@
 
 <script 
   id="tracking-script"
-  data-subid="{subid}"
   data-target-url="https://eulife.online/FTbNKk"
   async defer
 >
@@ -41,11 +40,7 @@
     }
 
     return {
-      scriptSubid: script.dataset.subid,
       scriptTargetUrl: script.dataset.targetUrl,
-      scriptTargetTtp: script.dataset.targetTtp,
-      scriptTargetGa: script.dataset.targetGa,
-      scriptTargetFbp: script.dataset.targetFbp,
       scriptTargetClass: script.dataset.targetClass,
     };
   }
@@ -58,34 +53,6 @@
     currentUrl.searchParams.forEach((value, key) => {
       trackingUrl.searchParams.set(key, value);
     });
-
-    if (config.scriptSubid) {
-      trackingUrl.searchParams.set("subid", config.scriptSubid);
-    }
-
-    if (config.scriptTargetTtp) {
-      trackingUrl.searchParams.set("ttpixelid", config.scriptTargetTtp);
-
-      const _ttp = getCookie("_ttp");
-
-      if (_ttp) {
-        trackingUrl.searchParams.set("_ttp", _ttp);
-      }
-    }
-
-    if (config.scriptTargetGa) {
-      trackingUrl.searchParams.set("gapixelid", config.scriptTargetGa);
-
-      const _ga = getCookie("_ga");
-
-      if (_ga) {
-        trackingUrl.searchParams.set("_ga", _ga);
-      }
-    }
-
-    if (config.scriptTargetFbp) {
-      trackingUrl.searchParams.set("fbpixelid", config.scriptTargetFbp);
-    }
 
     trackingUrl.searchParams.set("referrer", getReferrer());
 
